@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecipeFetcher</string>
+    <string name="app_name">ShoppingList</string>
     <string name="new_item">Add Item</string>
     <string name="save">Save</string>
     <string name="saved">Item saved</string>

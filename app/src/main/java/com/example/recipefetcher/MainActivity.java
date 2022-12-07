@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonAddItems, buttonShowItemList, buttonShowLocation;
+    Button  buttonShowItemList, buttonShowLocation;
+    FloatingActionButton buttonAddItems;
     private ShoppingListViewModel shoppingListViewModel;
     private static final int REQUEST_CODE_ADD = 1;
     private static final int REQUEST_CODE_EDIT = 2;
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonAddItems = (Button) findViewById(R.id.buttonAddItems);
+        buttonAddItems = (FloatingActionButton) findViewById(R.id.buttonaddItems);
         buttonShowItemList = (Button) findViewById(R.id.buttonShowItemList);
         buttonShowLocation = (Button) findViewById(R.id.buttonShowLocation);
         buttonAddItems.setOnClickListener(this);
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonAddItems:
+            case R.id.buttonaddItems:
                 Intent intent = new Intent(MainActivity.this, AddItems.class);
                 startActivityForResult(intent, REQUEST_CODE_ADD);
                 break;
