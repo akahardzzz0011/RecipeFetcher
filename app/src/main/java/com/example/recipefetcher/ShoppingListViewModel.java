@@ -9,7 +9,7 @@ import android.os.AsyncTask;
 public class ShoppingListViewModel extends AndroidViewModel {
 
     private String TAG = this.getClass().getSimpleName();
-    private Dao dao;
+    private static Dao dao;
     private ShoppingListDatabase slDB;
 
     public ShoppingListViewModel(@NonNull Application application) {

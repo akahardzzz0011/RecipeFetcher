@@ -9,13 +9,13 @@ public class ShoppingListItem {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private int id = 0;
+    private int id;
     @NonNull
-    private String item = "";
+    private String item;
     @NonNull
-    private int amount = 0;
+    private String amount;
 
-    public ShoppingListItem(String item, int amount) {
+    public ShoppingListItem(String item, String amount) {
         this.item = item;
         this.amount = amount;
     }
@@ -37,11 +37,11 @@ public class ShoppingListItem {
         this.item = item;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 }
