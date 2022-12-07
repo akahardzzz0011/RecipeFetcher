@@ -9,24 +9,30 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonFetchRecipes;
+    Button buttonAddItems, buttonShowItemList, buttonShowLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonFetchRecipes = (Button) findViewById(R.id.buttonFetchRecipes);
-        buttonFetchRecipes.setOnClickListener(this);
+        buttonAddItems = (Button) findViewById(R.id.buttonAddItems);
+        buttonShowItemList = (Button) findViewById(R.id.buttonShowItemList);
+        buttonShowLocation = (Button) findViewById(R.id.buttonShowLocation);
+        buttonAddItems.setOnClickListener(this);
+        buttonShowItemList.setOnClickListener(this);
+        buttonShowLocation.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonFetchRecipes:
-                Intent intent = new Intent(MainActivity.this, FetchRecipes.class);
+            case R.id.buttonAddItems:
+                Intent intent = new Intent(MainActivity.this, AddItems.class);
                 startActivity(intent);
                 break;
+
+
         }
     }
 }
