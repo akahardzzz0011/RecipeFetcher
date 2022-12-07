@@ -1,5 +1,6 @@
 package com.example.recipefetcher;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,29 +8,15 @@ import androidx.room.PrimaryKey;
 public class ShoppingListItem {
 
     @PrimaryKey(autoGenerate = true)
-
+    @NonNull
     private int id = 0;
+    @NonNull
     private String item = "";
+    @NonNull
     private int amount = 0;
 
     public ShoppingListItem(String item, int amount) {
         this.item = item;
-        this.amount = amount;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -39,5 +26,22 @@ public class ShoppingListItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @NonNull
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(@NonNull String item) {
+        this.item = item;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
