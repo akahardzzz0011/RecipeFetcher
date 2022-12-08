@@ -1,7 +1,10 @@
 package com.example.recipefetcher;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,19 +24,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ShoppingListViewModel shoppingListViewModel;
     private static final int REQUEST_CODE_ADD = 1;
     private static final int REQUEST_CODE_EDIT = 2;
+    private ShoppingListAdapter shoppingListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonAddItems = (FloatingActionButton) findViewById(R.id.buttonaddItems);
-        buttonShowItemList = (Button) findViewById(R.id.buttonShowItemList);
-        buttonShowLocation = (Button) findViewById(R.id.buttonShowLocation);
+        RecyclerView recyclerView = findViewById(R.id.shoppingListRecyclerView);
+        shoppingListAdapter = new ShoppingListAdapter(this);
+        recyclerView.setAdapter(shoppingListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        buttonAddItems = (FloatingActionButton) findViewById(R.id.buttonAddItems);
+        //buttonShowItemList = (Button) findViewById(R.id.buttonShowItemList);
+        //buttonShowLocation = (Button) findViewById(R.id.buttonShowLocation);
         buttonAddItems.setOnClickListener(this);
-        buttonShowItemList.setOnClickListener(this);
-        buttonShowLocation.setOnClickListener(this);
+        //buttonShowItemList.setOnClickListener(this);
+       // buttonShowLocation.setOnClickListener(this);
         shoppingListViewModel = new ViewModelProvider(this).get(ShoppingListViewModel.class);
+        shoppingListViewModel.getAllItems().observe(this, new Observer<List<ShoppingListItem>>() {
+            @Override
+            public void onChanged(List<ShoppingListItem> shoppingListItems) {
+                shoppingListAdapter.setItems(shoppingListItems);
+            }
+        });
     }
 
 
@@ -40,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonaddItems:
+            case R.id.buttonAddItems:
                 Intent intent = new Intent(MainActivity.this, AddItems.class);
                 startActivityForResult(intent, REQUEST_CODE_ADD);
                 break;

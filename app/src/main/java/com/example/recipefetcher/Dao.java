@@ -7,14 +7,9 @@ import androidx.room.Update;
 import androidx.room.Delete;
 import java.util.List;
 
+
 @androidx.room.Dao
 public interface Dao {
-
-    @Query("SELECT * FROM shopping_list")
-    LiveData<List<ShoppingListItem>> getAllItems();
-
-    @Query("DELETE from shopping_list")
-    void deleteAllItems();
 
     @Insert
     void insert(ShoppingListItem listItem);
@@ -24,4 +19,10 @@ public interface Dao {
 
     @Delete
     void delete(ShoppingListItem listItem);
+
+    @Query("SELECT * FROM shopping_list")
+    LiveData<List<ShoppingListItem>> getAllItems();
+
+    @Query("DELETE from shopping_list")
+    void deleteAllItems();
 }

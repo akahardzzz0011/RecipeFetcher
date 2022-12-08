@@ -4,18 +4,29 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
 import android.os.AsyncTask;
+
+import java.util.List;
 
 public class ShoppingListViewModel extends AndroidViewModel {
 
     private String TAG = this.getClass().getSimpleName();
     private static Dao dao;
     private ShoppingListDatabase slDB;
+    private LiveData<List<ShoppingListItem>> allItems;
 
     public ShoppingListViewModel(@NonNull Application application) {
         super(application);
         slDB = ShoppingListDatabase.getDatabase(application);
         dao = slDB.Dao();
+        allItems = dao.getAllItems();
+
+    }
+
+    LiveData<List<ShoppingListItem>> getAllItems() {
+        return allItems;
     }
 
     public void insert(ShoppingListItem shoppingListItem) {
