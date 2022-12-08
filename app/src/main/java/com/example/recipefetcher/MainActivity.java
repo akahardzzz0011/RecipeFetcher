@@ -17,9 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ShoppingListAdapter.OnDeleteClickListener {
 
-    Button  buttonShowLocation;
+    Button buttonShowLocation;
     FloatingActionButton buttonAddItems;
     private ShoppingListViewModel shoppingListViewModel;
     private static final int REQUEST_CODE_ADD = 1;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.shoppingListRecyclerView);
-        shoppingListAdapter = new ShoppingListAdapter(this);
+        shoppingListAdapter = new ShoppingListAdapter(this, this);
         recyclerView.setAdapter(shoppingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -94,5 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.LENGTH_SHORT
             ).show();
         }
+    }
+
+    @Override
+    public void OnDeleteClickListener(ShoppingListItem shoppingListItem) {
+        shoppingListViewModel.delete(shoppingListItem);
     }
 }
