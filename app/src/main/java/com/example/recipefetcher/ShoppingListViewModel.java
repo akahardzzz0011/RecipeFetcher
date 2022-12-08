@@ -12,7 +12,6 @@ import java.util.List;
 
 public class ShoppingListViewModel extends AndroidViewModel {
 
-    private String TAG = this.getClass().getSimpleName();
     private static Dao dao;
     private ShoppingListDatabase slDB;
     private LiveData<List<ShoppingListItem>> allItems;

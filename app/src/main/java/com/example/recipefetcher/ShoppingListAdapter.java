@@ -17,13 +17,19 @@ import java.util.List;
 
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder> {
 
+    public interface OnDeleteClickListener {
+        void OnDeleteClickListener(ShoppingListItem shoppingListItem);
+    }
+
     private final LayoutInflater layoutInflater;
     private Context mContext;
     private List<ShoppingListItem> shoppingList;
+    private OnDeleteClickListener onDeleteClickListener;
 
-    public ShoppingListAdapter(Context context) {
+    public ShoppingListAdapter(Context context, OnDeleteClickListener listener) {
         layoutInflater = LayoutInflater.from(context);
         mContext = context;
+        this.onDeleteClickListener = listener;
     }
     @NonNull
     @Override
@@ -90,7 +96,9 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             imageDeleteView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if(onDeleteClickListener != null) {
+                        onDeleteClickListener.OnDeleteClickListener(shoppingList.get(tempPosition));
+                    }
                 }
             });
         }
