@@ -78,7 +78,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     R.string.saved,
                     Toast.LENGTH_SHORT
             ).show();
+        } else if(requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
+
+            ShoppingListItem shoppingListItem = new ShoppingListItem(
+                    intent.getStringExtra(EditItemActivity.ITEM_ID),
+                    intent.getStringExtra(EditItemActivity.UPDATED_ITEM),
+                    intent.getStringExtra(EditItemActivity.UPDATED_AMOUNT)
+            );
+            shoppingListViewModel.update(shoppingListItem);
         } else {
+
             Toast.makeText(
                     getApplicationContext(),
                     R.string.not_saved,
