@@ -7,24 +7,25 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "shopping_list")
 public class ShoppingListItem {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @NonNull
-    private int id;
+    private String id;
     @NonNull
     private String item;
     @NonNull
     private String amount;
 
-    public ShoppingListItem(String item, String amount) {
+    public ShoppingListItem(String id, String item, String amount) {
+        this.id = id;
         this.item = item;
         this.amount = amount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

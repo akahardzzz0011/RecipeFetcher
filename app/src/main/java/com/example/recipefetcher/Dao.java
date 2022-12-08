@@ -23,6 +23,6 @@ public interface Dao {
     @Query("SELECT * FROM shopping_list")
     LiveData<List<ShoppingListItem>> getAllItems();
 
-    @Query("DELETE from shopping_list")
-    void deleteAllItems();
+    @Query("SELECT * FROM shopping_list WHERE id=:itemId")
+    LiveData<ShoppingListItem> getItem(String itemId);
 }
