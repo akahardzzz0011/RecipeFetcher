@@ -55,17 +55,18 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
     }
 
     public class ShoppingListViewHolder extends RecyclerView.ViewHolder {
-        private TextView slItemView;
+        private TextView slItemView, amountView;
         private int tempPosition;
 
         public ShoppingListViewHolder(View itemView) {
             super(itemView);
             slItemView = itemView.findViewById(R.id.textShoppingListItem);
+            amountView = itemView.findViewById(R.id.textAmount);
         }
 
         public void setData(String item, String amount, int position) {
             slItemView.setText(item);
-            slItemView.setText(amount);
+            amountView.setText(amount);
             tempPosition = position;
         }
     }
