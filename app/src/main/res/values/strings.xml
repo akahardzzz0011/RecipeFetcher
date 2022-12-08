@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">RecipeFetcher</string>
+    <string name="app_name">ShoppingList</string>
+    <string name="new_item">Add Item</string>
+    <string name="save">Save</string>
+    <string name="saved">Item saved</string>
+    <string name="not_saved">Item not saved</string>
+    <string name="no_items">Shoppinglist is empty</string>
 </resources>
